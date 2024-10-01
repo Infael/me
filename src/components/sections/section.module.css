@@ -1,0 +1,16 @@
+.main {
+  max-width: 700px;
+}
+
+.mainText {
+  position: relative;
+  margin-left: 8px;
+  z-index: 142;
+}
+
+@media screen and (max-width: 375px) {
+  .mainText {
+    font-size: var(--font-size-micro);
+  }
+}
+

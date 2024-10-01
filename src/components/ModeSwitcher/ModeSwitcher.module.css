@@ -1,0 +1,26 @@
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--flashlight-size);
+  height: var(--flashlight-size);
+  outline: 50000px solid rgba(0, 0, 0, 0.96);
+  border-radius: 50%;
+  box-shadow: inset 4px 0 calc(var(--flashlight-size) / 5)
+    calc(var(--flashlight-size) / 4) rgba(0, 0, 0, 0.96);
+  pointer-events: none;
+}
+
+.switcher {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  padding-right: 20px;
+
+  position: fixed;
+  bottom: 150px;
+  left: -116px;
+
+  transform: rotate(-90deg);
+}
+

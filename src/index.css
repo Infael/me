@@ -1,0 +1,41 @@
+:root {
+  /* Fonts */
+  --font-size-normal: 16px;
+  --font-size-small: 14px;
+  --font-size-large: 18px;
+  --font-size-micro: 12px;
+  --font-size-xl: 32px;
+  --font-size-xxl: 48px;
+
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  /* Colors */
+  --black: #0c0c0c;
+  --white: #f3f3f3;
+
+  --secondary-color: #51e18d; /* #fcba04 */
+
+  --background-color: var(--black);
+  --color: var(--white);
+
+  color-scheme: light dark;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --background-color: var(--white);
+    --color: var(--black);
+  }
+}
+
+body {
+  margin: 0;
+}
+
