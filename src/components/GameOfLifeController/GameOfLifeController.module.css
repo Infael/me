@@ -1,0 +1,10 @@
+.controller {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  position: fixed;
+  rotate: -90deg;
+  left: -144px;
+  top: 177px;
+}
+

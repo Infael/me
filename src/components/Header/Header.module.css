@@ -1,0 +1,47 @@
+.svg {
+  font-size: 64px;
+  font-weight: bold;
+  width: 600px;
+  height: 90px;
+  fill: var(--color);
+}
+
+.svgText {
+  fill: var(--color);
+  stroke: var(--secondary-color);
+  stroke-width: 15px;
+  stroke-linejoin: round;
+  paint-order: stroke;
+
+  transform: translate(-60px, 0);
+}
+
+@media screen and (max-width: 768px) {
+  .svg {
+    font-size: 64px;
+    font-weight: bold;
+    width: 320px;
+    height: 45px;
+    fill: var(--color);
+  }
+
+  .svgText {
+    transform: translate(-60px, 0);
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .svg {
+    font-size: 48px;
+    font-weight: bold;
+    width: 240px;
+    height: 45px;
+    fill: var(--color);
+  }
+
+  .svgText {
+    stroke-width: 7px;
+    transform: translate(0, 0);
+  }
+}
+

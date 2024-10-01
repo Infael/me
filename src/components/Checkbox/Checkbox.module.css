@@ -1,0 +1,41 @@
+.input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.label {
+  font-size: var(--font-size-micro);
+  text-transform: uppercase;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+
+  user-select: none;
+}
+
+.checkmark {
+  --checkbox-size: 10px;
+
+  position: relative;
+  display: inline-block;
+  width: var(--checkbox-size);
+  height: var(--checkbox-size);
+  background-color: var(--black);
+  border: 1px solid black;
+}
+
+.input:checked ~ .checkmark {
+  background-color: var(--white);
+}
+
+.input:active ~ .checkmark {
+  background-color: var(--black);
+}
+

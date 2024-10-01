@@ -1,0 +1,27 @@
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.menuItem {
+  text-align: end;
+  cursor: pointer;
+  user-select: none;
+
+  transition-property: color, font-size;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+}
+
+.active {
+  color: var(--secondary-color);
+  font-size: var(--font-size-xl);
+}
+
+@media screen and (max-width: 375px) {
+  .active {
+    font-size: var(--font-size-large);
+  }
+}
+
