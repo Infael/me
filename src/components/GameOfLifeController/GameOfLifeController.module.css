@@ -2,9 +2,11 @@
   display: flex;
   flex-direction: row;
   gap: 20px;
+  padding-right: 20px;
+
   position: fixed;
   rotate: -90deg;
-  left: -144px;
+  left: -155px;
   top: 177px;
 }
 

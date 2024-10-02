@@ -8,6 +8,12 @@
   z-index: 142;
 }
 
+@media screen and (max-width: 425px) {
+  .mainText {
+    font-size: var(--font-size-small);
+  }
+}
+
 @media screen and (max-width: 375px) {
   .mainText {
     font-size: var(--font-size-micro);

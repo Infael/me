@@ -12,6 +12,7 @@
   transition-property: color, font-size;
   transition-duration: 0.3s;
   transition-timing-function: ease-in-out;
+  text-wrap: nowrap;
 }
 
 .active {
@@ -19,7 +20,11 @@
   font-size: var(--font-size-xl);
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 425px) {
+  .menu {
+    gap: 10px;
+  }
+
   .active {
     font-size: var(--font-size-large);
   }
