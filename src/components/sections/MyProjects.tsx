@@ -6,7 +6,7 @@ export const MyProjects: FC = () => {
   return (
     <section className={styles.main}>
       <Header>What have I done?</Header>
-      <p className={styles.mainText}>TBD</p>
+      <p className={styles.mainText}>TBD...</p>
     </section>
   );
 };
