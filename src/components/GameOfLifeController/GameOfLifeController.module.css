@@ -2,11 +2,10 @@
   display: flex;
   flex-direction: row;
   gap: 20px;
-  padding-right: 20px;
 
   position: fixed;
-  rotate: -90deg;
-  left: -155px;
-  top: 177px;
+  transform-origin: bottom left;
+  transform: rotate(-90deg) translateX(calc(-100% - 12px))
+    translateY(calc(100% + 5px));
 }
 

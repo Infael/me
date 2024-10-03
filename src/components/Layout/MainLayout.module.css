@@ -21,7 +21,8 @@
   min-width: 320px;
   min-height: calc(100vh - var(--top-left-margin));
 
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 
   margin-top: var(--top-left-margin);
   margin-left: var(--top-left-margin);
