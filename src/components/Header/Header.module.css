@@ -3,11 +3,11 @@
   font-weight: bold;
   width: 600px;
   height: 90px;
-  fill: var(--color);
+  fill: var(--black);
 }
 
 .svgText {
-  fill: var(--color);
+  fill: var(--black);
   stroke: var(--secondary-color);
   stroke-width: 15px;
   stroke-linejoin: round;
@@ -34,7 +34,7 @@
   .svg {
     font-size: 48px;
     font-weight: bold;
-    width: 240px;
+    width: 220px;
     height: 45px;
     fill: var(--color);
   }
