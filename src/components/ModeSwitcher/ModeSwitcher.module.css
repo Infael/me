@@ -15,12 +15,10 @@
   display: flex;
   flex-direction: row;
   gap: 20px;
-  padding-right: 20px;
 
   position: fixed;
-  bottom: 150px;
-  left: -118px;
-
-  transform: rotate(-90deg);
+  bottom: 0px;
+  transform-origin: bottom left;
+  transform: rotate(-90deg) translateX(20px) translateY(calc(100% + 5px));
 }
 
