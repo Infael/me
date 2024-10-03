@@ -8,13 +8,14 @@ import {
   AboutMe,
   Canvas,
   Checkbox,
+  Contacts,
   GameOfLifeController,
   Menu,
   ModeSwitcher,
   MyProjects,
 } from "..";
 
-export type Section = "aboutMe" | "myProjects" | "aboutBackground";
+export type Section = "aboutMe" | "myProjects" | "aboutBackground" | "contacts";
 
 export const MainLayout: FC = () => {
   const [ref, { width, height }] = useMeasure();
@@ -32,6 +33,8 @@ export const MainLayout: FC = () => {
     switch (activeSection) {
       case "aboutMe":
         return <AboutMe />;
+      case "contacts":
+        return <Contacts />;
       case "myProjects":
         return <MyProjects />;
       case "aboutBackground":
