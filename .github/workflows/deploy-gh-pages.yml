@@ -1,9 +1,9 @@
 name: Deploy to GitHub Pages
 
 on:
-  push:
-    branches:
-      - master
+  release:
+    types:
+      - published
   workflow_dispatch:
 
 permissions:
@@ -20,6 +20,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'release' && github.event.release.tag_name || github.ref }}
 
       - name: Setup project
         uses: ./.github/actions/setup-pnpm-project
@@ -27,10 +29,10 @@ jobs:
       - name: Build project
         run: pnpm run build
 
-      - name: Get latest commit message
+      - name: Get commit message
         id: commit_message
         run: |
-          message="$(git log -1 --pretty=%s)"
+          message="Deploy ${GITHUB_REF_NAME:-${{ github.event.release.tag_name }}}"
           echo "message=$message" >> "$GITHUB_OUTPUT"
 
       - name: Deploy to gh-pages branch
