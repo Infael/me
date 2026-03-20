@@ -17,11 +17,13 @@ import {
   weekenderVsCopperhead,
 } from './Scenes';
 
+const AGENT_SIZE = 10;
 export class GameOfLife {
-  agents: Array<Agent[]>; // 2D array of agents
-  speed: number; // update agents every speed milliseconds
-  accumulatedTime: number;
-  gamePaused: boolean = false;
+  private agents: Array<Agent[]>; // 2D array of agents
+  private speed: number; // update agents every speed milliseconds
+  private accumulatedTime: number;
+  private gamePaused: boolean = false;
+  private controllable: boolean = false;
 
   constructor(speed: number, width: number, height: number) {
     this.speed = speed;
@@ -30,14 +32,14 @@ export class GameOfLife {
 
     this.agents = Array.from({ length: height }, (_, y) => {
       return Array.from({ length: width }, (_, x) => {
-        return new Agent(x, y, 10, false);
+        return new Agent(x, y, AGENT_SIZE, false);
       });
     });
 
     this.randomSceneChoicer();
   }
 
-  getNeighbors = (x: number, y: number): Agent[] => {
+  private getNeighbors = (x: number, y: number): Agent[] => {
     const neighbors = [];
 
     for (let xOffset = -1; xOffset <= 1; xOffset++) {
@@ -59,6 +61,35 @@ export class GameOfLife {
     }
 
     return neighbors;
+  };
+
+  private getAgentBasedOnMousePosition = (
+    x: number,
+    y: number,
+  ): Agent | null => {
+    const agentX = Math.floor(x / AGENT_SIZE);
+    const agentY = Math.floor(y / AGENT_SIZE);
+
+    if (
+      agentX < 0 ||
+      agentX >= this.agents[0].length ||
+      agentY < 0 ||
+      agentY >= this.agents.length
+    ) {
+      return null;
+    }
+
+    return this.agents[agentY][agentX];
+  };
+
+  private insertShape = (
+    shape: Array<[number, number]>,
+    x: number,
+    y: number,
+  ) => {
+    shape.forEach(([dx, dy]) => {
+      this.agents[y + dy][x + dx].revive();
+    });
   };
 
   update = (delta: number) => {
@@ -111,6 +142,10 @@ export class GameOfLife {
     this.gamePaused = !this.gamePaused;
   };
 
+  toggleControllable = () => {
+    this.controllable = !this.controllable;
+  };
+
   resetGame = () => {
     this.agents.forEach((agentRow) =>
       agentRow.forEach((agent) => {
@@ -120,10 +155,34 @@ export class GameOfLife {
     this.randomSceneChoicer();
   };
 
-  insertShape = (shape: Array<[number, number]>, x: number, y: number) => {
-    shape.forEach(([dx, dy]) => {
-      this.agents[y + dy][x + dx].revive();
-    });
+  clickHandler = (posX: number, posY: number) => {
+    if (!this.controllable) return;
+
+    const agent = this.getAgentBasedOnMousePosition(posX, posY);
+    if (!agent) return;
+
+    if (agent.alive) {
+      agent.kill();
+    } else {
+      agent.revive();
+    }
+  };
+
+  hoverHandler = (posX: number, posY: number) => {
+    if (!this.controllable) return;
+
+    this.agents.forEach((agentRow) =>
+      agentRow.forEach((agent) => {
+        agent.clearShade();
+      }),
+    );
+
+    const agent = this.getAgentBasedOnMousePosition(posX, posY);
+    if (!agent) return;
+
+    if (agent) {
+      agent.makeShade();
+    }
   };
 
   randomSceneChoicer = () => {

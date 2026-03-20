@@ -21,7 +21,8 @@ export const AboutBackground: FC = () => {
       </p>
       <p className={styles.mainText}>
         You can hide the screen text at the top of the screen so you can see the
-        whole show.
+        whole show and play around with the cells yourself (pause the background
+        if you want to draw more complex patterns).
       </p>
     </section>
   );

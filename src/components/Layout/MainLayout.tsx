@@ -1,4 +1,4 @@
-import { FC, useMemo, useState } from 'react';
+import { FC, useMemo, useState, MouseEvent } from 'react';
 import styles from './MainLayout.module.css';
 import { GameOfLife } from '../../gameOfLife';
 import { useMeasure } from '@uidotdev/usehooks';
@@ -52,14 +52,32 @@ export const MainLayout: FC = () => {
       <div className={styles.textController}>
         <Checkbox
           checked={textShowed}
-          onChange={setTextShowed}
+          onChange={(value) => {
+            setTextShowed(value);
+            gameOfLife?.toggleControllable();
+          }}
           label={textShowed ? 'hide text' : 'show text'}
         />
       </div>
       <div className={styles.mainBorder} ref={ref}>
         {gameOfLife !== null && (
           <div className={styles.canvasBackground}>
-            <Canvas draw={gameOfLife.render} update={gameOfLife.update} />
+            <Canvas
+              draw={gameOfLife.render}
+              update={gameOfLife.update}
+              clickController={(event: MouseEvent<HTMLCanvasElement>) => {
+                const rect = event.currentTarget.getBoundingClientRect();
+                const x = event.clientX - rect.left;
+                const y = event.clientY - rect.top;
+                gameOfLife.clickHandler(x, y);
+              }}
+              hoverController={(event: MouseEvent<HTMLCanvasElement>) => {
+                const rect = event.currentTarget.getBoundingClientRect();
+                const x = event.clientX - rect.left;
+                const y = event.clientY - rect.top;
+                gameOfLife.hoverHandler(x, y);
+              }}
+            />
           </div>
         )}
         {textShowed && (
