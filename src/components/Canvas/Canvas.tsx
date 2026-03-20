@@ -1,12 +1,20 @@
-import { FC, useCallback, useEffect, useRef } from 'react';
+import { FC, MouseEventHandler, useCallback, useEffect, useRef } from 'react';
 
 interface CanvasProps {
   update: (delta: number) => void;
   draw: (ctx: CanvasRenderingContext2D, lagOffset: number) => void;
+  clickController: MouseEventHandler<HTMLCanvasElement>;
+  hoverController: MouseEventHandler<HTMLCanvasElement>;
   fps?: number;
 }
 
-export const Canvas: FC<CanvasProps> = ({ update, draw, fps = 60 }) => {
+export const Canvas: FC<CanvasProps> = ({
+  update,
+  draw,
+  clickController,
+  hoverController,
+  fps = 60,
+}) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const resizeCanvasToDisplaySize = (canvas: HTMLCanvasElement) => {
@@ -35,6 +43,7 @@ export const Canvas: FC<CanvasProps> = ({ update, draw, fps = 60 }) => {
     context.restore();
   }, []);
 
+  // view
   useEffect(() => {
     if (!canvasRef.current) return;
 
@@ -81,5 +90,12 @@ export const Canvas: FC<CanvasProps> = ({ update, draw, fps = 60 }) => {
     };
   }, [update, draw, predraw, postdraw, fps]);
 
-  return <canvas ref={canvasRef} style={{ width: '100%', height: '100%' }} />;
+  return (
+    <canvas
+      ref={canvasRef}
+      style={{ width: '100%', height: '100%' }}
+      onClick={clickController}
+      onMouseMove={hoverController}
+    />
+  );
 };

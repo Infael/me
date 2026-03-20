@@ -69,8 +69,6 @@ export const createScene = (
     centerRight,
   } = options;
 
-  console.log(flipShapeHorizontally(weekender));
-
   if (LeftUpperCorner) {
     const editedShape: Array<[number, number]> = LeftUpperCorner.map(
       ([x, y]) => [x + borderPadding[0], y + borderPadding[1]],
