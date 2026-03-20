@@ -8,7 +8,7 @@ import {
   rotateShape270,
   rotateShape90,
   weekender,
-} from "./Shapes";
+} from './Shapes';
 
 interface createSceneOptions {
   leftTopCorner?: Array<[number, number]>;
@@ -25,27 +25,27 @@ interface createSceneOptions {
 const validateShape = (
   width: number,
   height: number,
-  shape: Array<[number, number]>
+  shape: Array<[number, number]>,
 ) => {
   return !shape.some(([x, y]) => x < 0 || y < 0 || x >= width || y >= height);
 };
 
 const centerShapeVertically = (
-  shape: Array<[number, number]>
+  shape: Array<[number, number]>,
 ): Array<[number, number]> => {
   const greatestY = Math.max(...shape.map(([, y]) => y));
   return shape.map(([x, y]) => [x, y - Math.floor(greatestY / 2)]);
 };
 
 const centerShapeHorizontally = (
-  shape: Array<[number, number]>
+  shape: Array<[number, number]>,
 ): Array<[number, number]> => {
   const greatestX = Math.max(...shape.map(([x]) => x));
   return shape.map(([x, y]) => [x - Math.floor(greatestX / 2), y]);
 };
 
 const centerShape = (
-  shape: Array<[number, number]>
+  shape: Array<[number, number]>,
 ): Array<[number, number]> => {
   return centerShapeVertically(centerShapeHorizontally(shape));
 };
@@ -54,7 +54,7 @@ export const createScene = (
   width: number,
   height: number,
   options: createSceneOptions,
-  borderPadding: [number, number, number, number] = [10, 10, 10, 10] // left top right bottom
+  borderPadding: [number, number, number, number] = [10, 10, 10, 10], // left top right bottom
 ): Array<[number, number]> => {
   let scene: Array<[number, number]> = [];
   const {
@@ -73,7 +73,7 @@ export const createScene = (
 
   if (LeftUpperCorner) {
     const editedShape: Array<[number, number]> = LeftUpperCorner.map(
-      ([x, y]) => [x + borderPadding[0], y + borderPadding[1]]
+      ([x, y]) => [x + borderPadding[0], y + borderPadding[1]],
     );
 
     if (validateShape(width, height, editedShape)) {
@@ -87,7 +87,7 @@ export const createScene = (
       ([x, y]) => [
         x + borderPadding[0],
         y + height - 1 - borderPadding[3] - greatestY,
-      ]
+      ],
     );
 
     if (validateShape(width, height, editedShape)) {
@@ -100,7 +100,7 @@ export const createScene = (
       ([x, y]) => [
         x + width - 1 - borderPadding[2] - greatestX,
         y + borderPadding[1],
-      ]
+      ],
     );
 
     if (validateShape(width, height, editedShape)) {
@@ -113,14 +113,14 @@ export const createScene = (
         Math.max(greatestX, x),
         Math.max(greatestY, y),
       ],
-      [0, 0]
+      [0, 0],
     );
 
     const editedShape: Array<[number, number]> = RightLowerCorner.map(
       ([x, y]) => [
         x + width - 1 - borderPadding[2] - greatestX,
         y + height - 1 - borderPadding[3] - greatestY,
-      ]
+      ],
     );
 
     if (validateShape(width, height, editedShape)) {
@@ -259,7 +259,7 @@ export const centerOscilator = (width: number, height: number) =>
     rightBottomCorner: flipShapeVertically(paulCallehans10cellInfiniteGrowth),
     leftTopCorner: flipShapeHorizontally(paulCallehans10cellInfiniteGrowth),
     rightTopCorner: flipShapeHorizontally(
-      flipShapeVertically(paulCallehans10cellInfiniteGrowth)
+      flipShapeVertically(paulCallehans10cellInfiniteGrowth),
     ),
   });
 
@@ -271,7 +271,7 @@ export const rightCornersOscillators = (width: number, height: number) =>
 
 export const rightCornersOscillatorsWithCopperhead = (
   width: number,
-  height: number
+  height: number,
 ) =>
   createScene(width, height, {
     rightBottomCorner: achimsp16Oscillator,
@@ -281,7 +281,7 @@ export const rightCornersOscillatorsWithCopperhead = (
 
 export const quadGliderGunsWithCenterOscillator = (
   width: number,
-  height: number
+  height: number,
 ) =>
   createScene(width, height, {
     leftBottomCorner: flipShapeHorizontally(gliderGun),
@@ -293,7 +293,7 @@ export const quadGliderGunsWithCenterOscillator = (
 
 export const rightCornersOscillatorsWithCenterInfinite = (
   width: number,
-  height: number
+  height: number,
 ) =>
   createScene(width, height, {
     rightBottomCorner: achimsp16Oscillator,
@@ -303,7 +303,7 @@ export const rightCornersOscillatorsWithCenterInfinite = (
 
 export const diagonalOscillatorsWithCenterInfinite = (
   width: number,
-  height: number
+  height: number,
 ) =>
   createScene(width, height, {
     leftBottomCorner: achimsp16Oscillator,
@@ -314,7 +314,7 @@ export const diagonalOscillatorsWithCenterInfinite = (
 
 export const centerAndCornerInfiniteWithCopperRace = (
   width: number,
-  height: number
+  height: number,
 ) =>
   createScene(width, height, {
     rightBottomCorner: paulCallehans10cellInfiniteGrowth,
@@ -333,4 +333,3 @@ export const chaosScene = (width: number, height: number) =>
     centerTop: flipShapeHorizontally(weekender),
     centerRight: rotateShape90(weekender),
   });
-

@@ -21,4 +21,3 @@
   transform-origin: bottom left;
   transform: rotate(-90deg) translateX(20px) translateY(calc(100% + 5px));
 }
-

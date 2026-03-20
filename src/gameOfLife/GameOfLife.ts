@@ -1,4 +1,4 @@
-import { Agent } from "./Agent";
+import { Agent } from './Agent';
 import {
   centerAndCornerInfiniteWithCopperRace,
   centerOscilator,
@@ -15,7 +15,7 @@ import {
   weekenderCollision,
   weekenderQuadCollision,
   weekenderVsCopperhead,
-} from "./Scenes";
+} from './Scenes';
 
 export class GameOfLife {
   agents: Array<Agent[]>; // 2D array of agents
@@ -84,7 +84,7 @@ export class GameOfLife {
             agent.prepareToRevive();
           }
         }
-      })
+      }),
     );
 
     this.agents.forEach((agentRow) =>
@@ -95,7 +95,7 @@ export class GameOfLife {
         if (agent.shouldBeRevived) {
           agent.revive();
         }
-      })
+      }),
     );
   };
 
@@ -103,7 +103,7 @@ export class GameOfLife {
     this.agents.forEach((agentRow) =>
       agentRow.forEach((agent) => {
         agent.render(ctx);
-      })
+      }),
     );
   };
 
@@ -115,7 +115,7 @@ export class GameOfLife {
     this.agents.forEach((agentRow) =>
       agentRow.forEach((agent) => {
         agent.kill();
-      })
+      }),
     );
     this.randomSceneChoicer();
   };
@@ -139,23 +139,23 @@ export class GameOfLife {
       rightCornersOscillators(this.agents[0].length, this.agents.length),
       rightCornersOscillatorsWithCopperhead(
         this.agents[0].length,
-        this.agents.length
+        this.agents.length,
       ),
       quadGliderGunsWithCenterOscillator(
         this.agents[0].length,
-        this.agents.length
+        this.agents.length,
       ),
       rightCornersOscillatorsWithCenterInfinite(
         this.agents[0].length,
-        this.agents.length
+        this.agents.length,
       ),
       diagonalOscillatorsWithCenterInfinite(
         this.agents[0].length,
-        this.agents.length
+        this.agents.length,
       ),
       centerAndCornerInfiniteWithCopperRace(
         this.agents[0].length,
-        this.agents.length
+        this.agents.length,
       ),
       chaosScene(this.agents[0].length, this.agents.length),
     ];
@@ -164,4 +164,3 @@ export class GameOfLife {
     this.insertShape(randomScene, 0, 0);
   };
 }
-

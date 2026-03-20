@@ -1,8 +1,8 @@
-import { FC, useMemo, useState } from "react";
-import styles from "./MainLayout.module.css";
-import { GameOfLife } from "../../gameOfLife";
-import { useMeasure } from "@uidotdev/usehooks";
-import classNames from "classnames";
+import { FC, useMemo, useState } from 'react';
+import styles from './MainLayout.module.css';
+import { GameOfLife } from '../../gameOfLife';
+import { useMeasure } from '@uidotdev/usehooks';
+import classNames from 'classnames';
 import {
   AboutBackground,
   AboutMe,
@@ -13,31 +13,31 @@ import {
   Menu,
   ModeSwitcher,
   MyProjects,
-} from "..";
+} from '..';
 
-export type Section = "aboutMe" | "myProjects" | "aboutBackground" | "contacts";
+export type Section = 'aboutMe' | 'myProjects' | 'aboutBackground' | 'contacts';
 
 export const MainLayout: FC = () => {
   const [ref, { width, height }] = useMeasure();
 
   const [textShowed, setTextShowed] = useState(true);
-  const [activeSection, setActiveSection] = useState<Section>("aboutMe");
+  const [activeSection, setActiveSection] = useState<Section>('aboutMe');
 
   const gameOfLife = useMemo<GameOfLife | null>(
     () =>
       width && height ? new GameOfLife(100, width / 10, height / 10) : null,
-    [width, height]
+    [width, height],
   );
 
   const getActiveSection = () => {
     switch (activeSection) {
-      case "aboutMe":
+      case 'aboutMe':
         return <AboutMe />;
-      case "contacts":
+      case 'contacts':
         return <Contacts />;
-      case "myProjects":
+      case 'myProjects':
         return <MyProjects />;
-      case "aboutBackground":
+      case 'aboutBackground':
         return <AboutBackground />;
     }
   };
@@ -53,7 +53,7 @@ export const MainLayout: FC = () => {
         <Checkbox
           checked={textShowed}
           onChange={setTextShowed}
-          label={textShowed ? "hide text" : "show text"}
+          label={textShowed ? 'hide text' : 'show text'}
         />
       </div>
       <div className={styles.mainBorder} ref={ref}>
@@ -77,4 +77,3 @@ export const MainLayout: FC = () => {
     </div>
   );
 };
-

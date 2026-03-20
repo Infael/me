@@ -1,7 +1,7 @@
-import { FC } from "react";
-import { Section } from "../Layout/MainLayout";
-import styles from "./Menu.module.css";
-import classNames from "classnames";
+import { FC } from 'react';
+import { Section } from '../Layout/MainLayout';
+import styles from './Menu.module.css';
+import classNames from 'classnames';
 
 interface MenuProps {
   activeSection: string;
@@ -14,40 +14,39 @@ export const Menu: FC<MenuProps> = ({ activeSection, setActiveSection }) => {
       <div
         className={classNames(
           styles.menuItem,
-          activeSection === "aboutMe" ? styles.active : ""
+          activeSection === 'aboutMe' ? styles.active : '',
         )}
-        onClick={() => setActiveSection("aboutMe")}
+        onClick={() => setActiveSection('aboutMe')}
       >
         About me
       </div>
       <div
         className={classNames(
           styles.menuItem,
-          activeSection === "contacts" ? styles.active : ""
+          activeSection === 'contacts' ? styles.active : '',
         )}
-        onClick={() => setActiveSection("contacts")}
+        onClick={() => setActiveSection('contacts')}
       >
         Contacts
       </div>
       <div
         className={classNames(
           styles.menuItem,
-          activeSection === "myProjects" ? styles.active : ""
+          activeSection === 'myProjects' ? styles.active : '',
         )}
-        onClick={() => setActiveSection("myProjects")}
+        onClick={() => setActiveSection('myProjects')}
       >
         My projects
       </div>
       <div
         className={classNames(
           styles.menuItem,
-          activeSection === "aboutBackground" ? styles.active : ""
+          activeSection === 'aboutBackground' ? styles.active : '',
         )}
-        onClick={() => setActiveSection("aboutBackground")}
+        onClick={() => setActiveSection('aboutBackground')}
       >
         About this background
       </div>
     </nav>
   );
 };
-

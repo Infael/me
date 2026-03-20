@@ -1,6 +1,6 @@
 # My App
 
-Ahoj, vitajte pri kóde mojich osobných stránok. Ako každý správny developer som si ich chcel urobiť. Plánujem ich využívať ako môj osobný playground.
+Hi, welcome to the code for my personal website. Like any good developer, I wanted to build it myself. I plan to use it as my personal playground.
 
 ## Project Setup
 
@@ -28,10 +28,13 @@ pnpm run lint
 
 ### Upload to GH Pages
 
+Pages are deployed automatically by a Github Workflow that runs on push to master.
+
+Alternatively old manual way:
+
 ```sh
 pnpm run build
 git add dist -f
 git commit -m "commit message"
 git subtree push --prefix dist origin gh-pages
 ```
-

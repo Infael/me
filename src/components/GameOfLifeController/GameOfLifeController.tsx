@@ -1,7 +1,7 @@
-import { FC, useState } from "react";
-import { Checkbox } from "../Checkbox/Checkbox";
+import { FC, useState } from 'react';
+import { Checkbox } from '../Checkbox/Checkbox';
 
-import styles from "./GameOfLifeController.module.css";
+import styles from './GameOfLifeController.module.css';
 
 interface GameOfLifeControllerProps {
   togglePauseGame?: () => void;
@@ -36,4 +36,3 @@ export const GameOfLifeController: FC<GameOfLifeControllerProps> = ({
     </div>
   );
 };
-
