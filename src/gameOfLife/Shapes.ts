@@ -181,42 +181,41 @@ export const achimsp16Oscillator: Array<[number, number]> = [
 ];
 
 export const flipShapeHorizontally = (
-  shape: Array<[number, number]>
+  shape: Array<[number, number]>,
 ): Array<[number, number]> => {
   return normalizeShape(shape.map(([x, y]) => [x, -y]));
 };
 
 export const flipShapeVertically = (
-  shape: Array<[number, number]>
+  shape: Array<[number, number]>,
 ): Array<[number, number]> => {
   return normalizeShape(shape.map(([x, y]) => [-x, y]));
 };
 
 export const flipShapeDiaognally = (
-  shape: Array<[number, number]>
+  shape: Array<[number, number]>,
 ): Array<[number, number]> => {
   return normalizeShape(shape.map(([x, y]) => [y, x]));
 };
 
 export const rotateShape90 = (
-  shape: Array<[number, number]>
+  shape: Array<[number, number]>,
 ): Array<[number, number]> => {
   return normalizeShape(shape.map(([x, y]) => [y, -x]));
 };
 
 export const rotateShape270 = (
-  shape: Array<[number, number]>
+  shape: Array<[number, number]>,
 ): Array<[number, number]> => {
   return normalizeShape(shape.map(([x, y]) => [-y, x]));
 };
 
 // normalizeShape transforms a shape to not have negative coordinates
 export const normalizeShape = (
-  shape: Array<[number, number]>
+  shape: Array<[number, number]>,
 ): Array<[number, number]> => {
   const minX = Math.min(...shape.map(([x]) => x));
   const minY = Math.min(...shape.map(([, y]) => y));
 
   return shape.map(([x, y]) => [x - minX, y - minY]);
 };
-

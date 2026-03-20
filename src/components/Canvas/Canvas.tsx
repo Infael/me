@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useRef } from "react";
+import { FC, useCallback, useEffect, useRef } from 'react';
 
 interface CanvasProps {
   update: (delta: number) => void;
@@ -14,7 +14,7 @@ export const Canvas: FC<CanvasProps> = ({ update, draw, fps = 60 }) => {
 
     if (canvas.width !== width || canvas.height !== height) {
       const { devicePixelRatio: ratio = 1 } = window;
-      const context = canvas.getContext("2d");
+      const context = canvas.getContext('2d');
       canvas.width = width * ratio;
       canvas.height = height * ratio;
       if (context) context.scale(ratio, ratio);
@@ -28,7 +28,7 @@ export const Canvas: FC<CanvasProps> = ({ update, draw, fps = 60 }) => {
       const { width, height } = context.canvas;
       context.clearRect(0, 0, width, height);
     },
-    []
+    [],
   );
 
   const postdraw = useCallback((context: CanvasRenderingContext2D) => {
@@ -39,7 +39,7 @@ export const Canvas: FC<CanvasProps> = ({ update, draw, fps = 60 }) => {
     if (!canvasRef.current) return;
 
     const canvas = canvasRef.current;
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
     let animationFrameId: number;
@@ -81,6 +81,5 @@ export const Canvas: FC<CanvasProps> = ({ update, draw, fps = 60 }) => {
     };
   }, [update, draw, predraw, postdraw, fps]);
 
-  return <canvas ref={canvasRef} style={{ width: "100%", height: "100%" }} />;
+  return <canvas ref={canvasRef} style={{ width: '100%', height: '100%' }} />;
 };
-

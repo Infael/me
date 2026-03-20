@@ -1,5 +1,5 @@
-import { FC } from "react";
-import styles from "./Checkbox.module.css";
+import { FC } from 'react';
+import styles from './Checkbox.module.css';
 
 interface CheckboxProps {
   label: string;
@@ -21,4 +21,3 @@ export const Checkbox: FC<CheckboxProps> = ({ label, checked, onChange }) => {
     </label>
   );
 };
-

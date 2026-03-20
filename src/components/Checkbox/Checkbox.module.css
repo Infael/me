@@ -38,4 +38,3 @@
 .input:active ~ .checkmark {
   background-color: var(--black);
 }
-

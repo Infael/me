@@ -50,8 +50,7 @@ export class Agent {
   render = (ctx: CanvasRenderingContext2D) => {
     if (!this.alive) return;
 
-    ctx.fillStyle = "#fff";
+    ctx.fillStyle = '#fff';
     ctx.fillRect(this.x * this.size, this.y * this.size, this.size, this.size);
   };
 }
-

@@ -1,6 +1,6 @@
-import { FC } from "react";
-import { Header } from "../Header/Header";
-import styles from "./section.module.css";
+import { FC } from 'react';
+import { Header } from '../Header/Header';
+import styles from './section.module.css';
 
 export const AboutBackground: FC = () => {
   return (
@@ -26,4 +26,3 @@ export const AboutBackground: FC = () => {
     </section>
   );
 };
-

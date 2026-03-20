@@ -1,1 +1,1 @@
-export * from "./useTitleHook";
+export * from './useTitleHook';
