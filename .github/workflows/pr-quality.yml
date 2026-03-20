@@ -30,3 +30,6 @@ jobs:
 
       - name: Run TypeScript check
         run: pnpm run check
+
+      - name: Run unit tests
+        run: pnpm run test:run
