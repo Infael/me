@@ -11,6 +11,14 @@ Hi, welcome to the code for my personal website. Like any good developer, I want
 ## Project Setup
 
 ```sh
+# SETUP NODE
+# I recommend to use node version manager (nvm)
+nvm install
+nvm use
+```
+
+```sh
+# INSTALL PROJECT
 pnpm install
 ```
 

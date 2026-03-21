@@ -5,8 +5,8 @@ import {
   flipShapeVertically,
   gliderGun,
   paulCallehans10cellInfiniteGrowth,
-  rotateShape270,
   rotateShape90,
+  rotateShape270,
   weekender,
 } from './Shapes';
 

@@ -1,11 +1,11 @@
 import { Agent } from './Agent';
 import {
+  DoubleGliderGunScene,
   centerAndCornerInfiniteWithCopperRace,
   centerOscilator,
   chaosScene,
   cornersCopperHeads,
   diagonalOscillatorsWithCenterInfinite,
-  DoubleGliderGunScene,
   gliderGunWeekenderHunt,
   quadGliderGuns,
   quadGliderGunsWithCenterOscillator,

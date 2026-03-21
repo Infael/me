@@ -1,19 +1,23 @@
-import { FC, useMemo, useState, MouseEvent } from 'react';
-import styles from './MainLayout.module.css';
-import { GameOfLife } from '../../gameOfLife';
 import { useMeasure } from '@uidotdev/usehooks';
-import classNames from 'classnames';
+import { FC, MouseEvent, useMemo, useState } from 'react';
+
+import {
+  Canvas,
+  Checkbox,
+  GameOfLifeController,
+  ModeSwitcher,
+} from '@components';
+import { Menu } from '@components/Menu/Menu';
 import {
   AboutBackground,
   AboutMe,
-  Canvas,
-  Checkbox,
   Contacts,
-  GameOfLifeController,
-  Menu,
-  ModeSwitcher,
   MyProjects,
-} from '..';
+} from '@components/sections';
+import { GameOfLife } from '@gameOfLife';
+import { classNames } from '@utils';
+
+import styles from './MainLayout.module.css';
 
 export type Section = 'aboutMe' | 'myProjects' | 'aboutBackground' | 'contacts';
 

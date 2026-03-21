@@ -1,5 +1,7 @@
 import { FC } from 'react';
+
 import { Header } from '../Header/Header';
+
 import styles from './section.module.css';
 
 export const AboutMe: FC = () => {

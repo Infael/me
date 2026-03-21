@@ -1,0 +1,118 @@
+.socialMediaWheelWrapper {
+  --rotation: 45deg;
+  --quadrant-size: 100px;
+  --wheel-size: calc(var(--quadrant-size) * 2);
+
+  display: grid;
+  place-items: start;
+  padding-left: 3rem;
+
+  @media screen and (max-width: 425px) {
+    place-items: center;
+    padding-left: 0rem;
+  }
+}
+
+.socialMediaWheel {
+  display: grid;
+  grid-template-columns: repeat(2, var(--quadrant-size));
+  grid-template-rows: repeat(2, var(--quadrant-size));
+  gap: 0;
+  isolation: isolate;
+
+  transform-origin: center;
+  rotate: var(--rotation);
+}
+
+.quadrant {
+  --icon-padding: 12px;
+  --icon-size: 30px;
+  --scale-factor: 1.1;
+  --translate-distance: calc(calc(var(--scale-factor) - 1) / 2 * 100%);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--quadrant-size);
+  height: var(--quadrant-size);
+
+  border: none;
+  text-decoration: none;
+  color: var(--white);
+
+  position: relative;
+  z-index: 1;
+
+  transition: all 0.1s ease-in-out;
+
+  svg {
+    width: 25px;
+    height: 25px;
+    rotate: calc(var(--rotation) * -1);
+  }
+}
+
+.quadrant1 {
+  border-top-right-radius: 100%;
+  background-color: var(--github-color);
+
+  svg {
+    padding-right: var(--icon-padding);
+  }
+
+  &:hover {
+    scale: 1.1;
+    translate: var(--translate-distance) calc(-1 * var(--translate-distance));
+    z-index: 0;
+    box-shadow: 0px 0px 15px 5px var(--github-color);
+  }
+}
+
+.quadrant2 {
+  border-top-left-radius: 100%;
+  background-color: var(--instagram-color);
+
+  svg {
+    padding-top: var(--icon-padding);
+  }
+
+  &:hover {
+    scale: 1.1;
+    translate: calc(-1 * var(--translate-distance))
+      calc(-1 * var(--translate-distance));
+    z-index: 0;
+    box-shadow: 0px 0px 15px 5px var(--instagram-color);
+  }
+}
+
+.quadrant3 {
+  border-bottom-left-radius: 100%;
+  background-color: var(--linkedin-color);
+
+  svg {
+    padding-left: var(--icon-padding);
+  }
+
+  &:hover {
+    scale: 1.1;
+    translate: calc(-1 * var(--translate-distance)) var(--translate-distance);
+    z-index: 0;
+    box-shadow: 0px 0px 15px 5px var(--linkedin-color);
+  }
+}
+
+.quadrant4 {
+  border-bottom-right-radius: 100%;
+  background-color: var(--discord-color);
+
+  svg {
+    padding-bottom: var(--icon-padding);
+  }
+
+  &:hover {
+    scale: 1.1;
+    translate: var(--translate-distance) var(--translate-distance);
+    z-index: 0;
+    box-shadow: 0px 0px 15px 5px var(--discord-color);
+  }
+}

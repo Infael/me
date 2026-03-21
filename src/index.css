@@ -20,6 +20,11 @@
   --background-color: var(--black);
   --color: var(--white);
 
+  --discord-color: #7289da;
+  --instagram-color: #fcaf45;
+  --github-color: #333;
+  --linkedin-color: #0077b5;
+
   color-scheme: light dark;
 
   font-synthesis: none;

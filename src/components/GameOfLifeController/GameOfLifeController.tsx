@@ -1,4 +1,5 @@
 import { FC, useState } from 'react';
+
 import { Checkbox } from '../Checkbox/Checkbox';
 
 import styles from './GameOfLifeController.module.css';

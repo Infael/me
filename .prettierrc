@@ -1,4 +1,16 @@
 {
   "singleQuote": true,
-  "plugins": ["prettier-plugin-tailwindcss", "prettier-plugin-merge"]
+  "plugins": [
+    "@trivago/prettier-plugin-sort-imports",
+    "prettier-plugin-tailwindcss",
+    "prettier-plugin-merge"
+  ],
+  "importOrder": [
+    "<THIRD_PARTY_MODULES>",
+    "^(?:@(utils|components|hooks|gameOfLife)(/.*)?|[./](?!.*\\.(?:png|jpe?g|gif|svg|webp|avif|ico|bmp)$)(?!.*\\.module\\.css$).*)$",
+    "^[./].*\\.(?:png|jpe?g|gif|svg|webp|avif|ico|bmp)$",
+    "^[./].*\\.module\\.css$"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
 }

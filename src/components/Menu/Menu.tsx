@@ -1,7 +1,9 @@
 import { FC } from 'react';
+
 import { Section } from '../Layout/MainLayout';
+import { classNames } from '@utils';
+
 import styles from './Menu.module.css';
-import classNames from 'classnames';
 
 interface MenuProps {
   activeSection: string;

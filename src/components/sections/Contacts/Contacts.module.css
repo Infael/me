@@ -1,0 +1,23 @@
+.sectionWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.contactsWrapper {
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contactsRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+
+  a {
+    color: var(--white);
+  }
+}
