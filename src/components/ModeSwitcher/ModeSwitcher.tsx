@@ -1,7 +1,9 @@
 import { useMediaQuery, useMouse } from '@uidotdev/usehooks';
 import { CSSProperties, FC, useEffect, useRef, useState } from 'react';
-import styles from './ModeSwitcher.module.css';
+
 import { Checkbox } from '../Checkbox/Checkbox';
+
+import styles from './ModeSwitcher.module.css';
 
 type Mode = 'light' | 'dark' | 'true-dark';
 

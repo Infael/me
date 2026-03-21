@@ -1,8 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
+
 import { AboutBackground } from './AboutBackground';
 import { AboutMe } from './AboutMe';
-import { Contacts } from './Contacts';
+import { Contacts } from './Contacts/Contacts';
 import { MyProjects } from './MyProjects';
 
 describe('section components', () => {
