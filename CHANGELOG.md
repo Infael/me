@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.0](https://github.com/Infael/me/compare/me-v1.1.0...me-v1.2.0) (2026-03-21)
+
+
+### Features
+
+* add hover and mouse click controllers to Game of Life background ([#8](https://github.com/Infael/me/issues/8)) ([607fe63](https://github.com/Infael/me/commit/607fe6398bf85957c9fe12b2b4cd0e48aec2aa23))
+* complete contacts page ([#11](https://github.com/Infael/me/issues/11)) ([9750000](https://github.com/Infael/me/commit/9750000db5e70e646f47b27164fa4c0b06c99ca3))
+
 ## [1.1.0](https://github.com/Infael/me/compare/me-v1.0.0...me-v1.1.0) (2026-03-20)
 
 
