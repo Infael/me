@@ -3,6 +3,11 @@
   --quadrant-size: 100px;
   --wheel-size: calc(var(--quadrant-size) * 2);
 
+  --moxfield-color: #731fa1;
+  --instagram-color: #fcaf45;
+  --github-color: #333;
+  --linkedin-color: #0077b5;
+
   display: grid;
   place-items: start;
   padding-left: 3rem;
@@ -103,16 +108,24 @@
 
 .quadrant4 {
   border-bottom-right-radius: 100%;
-  background-color: var(--discord-color);
+  background-color: var(--moxfield-color);
 
-  svg {
-    padding-bottom: var(--icon-padding);
+  img {
+    padding-bottom: calc(var(--icon-padding) * 2);
   }
 
   &:hover {
     scale: 1.1;
     translate: var(--translate-distance) var(--translate-distance);
     z-index: 0;
-    box-shadow: 0px 0px 15px 5px var(--discord-color);
+    box-shadow: 0px 0px 15px 5px var(--moxfield-color);
   }
+}
+
+.moxfield {
+  --scale-factor: 1.3;
+
+  width: calc(var(--icon-size) * var(--scale-factor));
+  height: calc(var(--icon-size) * var(--scale-factor));
+  rotate: calc(var(--rotation) * -1);
 }
