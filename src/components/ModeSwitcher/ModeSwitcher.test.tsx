@@ -32,4 +32,15 @@ describe('ModeSwitcher', () => {
       container.querySelector('div[style*="--flashlight-size"]'),
     ).not.toBeNull();
   });
+
+  it('renders 3d filter when 3d mode is enabled', () => {
+    const { container } = render(<ModeSwitcher />);
+    const checkboxes = container.querySelectorAll('input[type="checkbox"]');
+
+    fireEvent.click(checkboxes[3]);
+
+    expect(document.documentElement.classList.contains('anaglyph-mode')).toBe(
+      true,
+    );
+  });
 });
