@@ -15,6 +15,7 @@ export const ModeSwitcher: FC = () => {
   const [mode, setMode] = useState<Mode>(() =>
     userPreferDark ? 'dark' : 'light',
   );
+  const [mode3d, setMode3d] = useState(false);
 
   const mouseDivRef = useRef<HTMLDivElement>(null);
   const [mouseData] = useMouse();
@@ -69,6 +70,20 @@ export const ModeSwitcher: FC = () => {
           label="true dark"
           onChange={() => {
             setMode('true-dark');
+          }}
+        />
+        <Checkbox
+          checked={mode3d}
+          label="3D"
+          onChange={() => {
+            setMode3d((prev) => {
+              if (prev) {
+                document.documentElement.classList.remove('anaglyph-mode');
+              } else {
+                document.documentElement.classList.add('anaglyph-mode');
+              }
+              return !prev;
+            });
           }}
         />
       </div>

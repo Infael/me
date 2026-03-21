@@ -63,7 +63,10 @@ export const MainLayout: FC = () => {
           label={textShowed ? 'hide text' : 'show text'}
         />
       </div>
-      <div className={styles.mainBorder} ref={ref}>
+      <div
+        className={classNames(styles.mainBorder, 'anaglyph-target')}
+        ref={ref}
+      >
         {gameOfLife !== null && (
           <div className={styles.canvasBackground}>
             <Canvas

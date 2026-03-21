@@ -43,3 +43,7 @@
 body {
   margin: 0;
 }
+
+html.anaglyph-mode .anaglyph-target {
+  filter: url('#anaglyph-3d');
+}

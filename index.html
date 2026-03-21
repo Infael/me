@@ -7,6 +7,40 @@
     <title>🔥 ___MICHAL_ŠTEFAŇÁK___DEVELOPER___WANNA_BE_ARTIST___HUSBAND</title>
   </head>
   <body>
+    <svg
+      aria-hidden="true"
+      width="0"
+      height="0"
+      style="position: absolute; width: 0; height: 0; overflow: hidden"
+    >
+      <defs>
+        <filter id="anaglyph-3d" x="-20%" y="-20%" width="140%" height="140%">
+          <feColorMatrix
+            in="SourceGraphic"
+            type="matrix"
+            values="1 0 0 0 0
+                    0 0 0 0 0
+                    0 0 0 0 0
+                    0 0 0 1 0"
+            result="redChannel"
+          />
+          <feOffset in="redChannel" dx="-2" dy="0" result="redOffset" />
+
+          <feColorMatrix
+            in="SourceGraphic"
+            type="matrix"
+            values="0 0 0 0 0
+                    0 1 0 0 0
+                    0 0 1 0 0
+                    0 0 0 1 0"
+            result="cyanChannel"
+          />
+          <feOffset in="cyanChannel" dx="2" dy="0" result="cyanOffset" />
+
+          <feBlend in="redOffset" in2="cyanOffset" mode="screen" />
+        </filter>
+      </defs>
+    </svg>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
