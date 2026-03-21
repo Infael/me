@@ -1,12 +1,9 @@
 import { FC } from 'react';
 
-import {
-  DiscordIcon,
-  GitHubIcon,
-  InstagramIcon,
-  LinkedInIcon,
-} from './ContactsIcons';
+import { GitHubIcon, InstagramIcon, LinkedInIcon } from './ContactsIcons';
 import { classNames } from '@utils';
+
+import moxfieldLogo from './moxfieldLogo.png';
 
 import styles from './SocialMediaWheel.module.css';
 
@@ -38,9 +35,14 @@ export const SocialMediaWheel: FC = () => {
         >
           <LinkedInIcon />
         </a>
-        <button className={classNames(styles.quadrant, styles.quadrant4)}>
-          <DiscordIcon />
-        </button>
+        <a
+          className={classNames(styles.quadrant, styles.quadrant4)}
+          href="https://moxfield.com/users/Infael"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img src={moxfieldLogo} alt="Moxfield" className={styles.moxfield} />
+        </a>
       </div>
     </div>
   );
