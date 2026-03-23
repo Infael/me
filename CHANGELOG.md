@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.3.0](https://github.com/Infael/me/compare/me-v1.2.0...me-v1.3.0) (2026-03-23)
+
+
+### Features
+
+* Add Moxfield link to social media wheel ([#14](https://github.com/Infael/me/issues/14)) ([9165c6d](https://github.com/Infael/me/commit/9165c6df5e5e7cf99d1320a92ebfcdee8906f8a6))
+* implement anaglyph 3D mode ([#12](https://github.com/Infael/me/issues/12)) ([48e01ff](https://github.com/Infael/me/commit/48e01ff32592c99b2e2a00be232d057b7ebb2a18))
+
 ## [1.2.0](https://github.com/Infael/me/compare/me-v1.1.0...me-v1.2.0) (2026-03-21)
 
 
