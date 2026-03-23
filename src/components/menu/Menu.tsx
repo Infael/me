@@ -1,12 +1,12 @@
 import { FC } from 'react';
 
-import { Section } from '../Layout/MainLayout';
+import { Section } from '@components/sections/Sections';
 import { classNames } from '@utils';
 
 import styles from './Menu.module.css';
 
 interface MenuProps {
-  activeSection: string;
+  activeSection: Section;
   setActiveSection: (section: Section) => void;
 }
 

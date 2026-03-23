@@ -1,9 +1,9 @@
 import { FC } from 'react';
 
-import { GitHubIcon, InstagramIcon, LinkedInIcon } from './ContactsIcons';
+import { GitHubIcon, InstagramIcon, LinkedInIcon } from '../ContactsIcons';
 import { classNames } from '@utils';
 
-import moxfieldLogo from './moxfieldLogo.png';
+import moxfieldLogo from '../moxfieldLogo.png';
 
 import styles from './SocialMediaWheel.module.css';
 

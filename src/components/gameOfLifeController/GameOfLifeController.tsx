@@ -1,6 +1,6 @@
 import { FC, useState } from 'react';
 
-import { Checkbox } from '../Checkbox/Checkbox';
+import { Checkbox } from '@components/checkbox/Checkbox';
 
 import styles from './GameOfLifeController.module.css';
 

@@ -5,21 +5,15 @@ import {
   Canvas,
   Checkbox,
   GameOfLifeController,
+  Menu,
   ModeSwitcher,
+  Section,
+  Sections,
 } from '@components';
-import { Menu } from '@components/Menu/Menu';
-import {
-  AboutBackground,
-  AboutMe,
-  Contacts,
-  MyProjects,
-} from '@components/sections';
 import { GameOfLife } from '@gameOfLife';
 import { classNames } from '@utils';
 
 import styles from './MainLayout.module.css';
-
-export type Section = 'aboutMe' | 'myProjects' | 'aboutBackground' | 'contacts';
 
 export const MainLayout: FC = () => {
   const [ref, { width, height }] = useMeasure();
@@ -32,19 +26,6 @@ export const MainLayout: FC = () => {
       width && height ? new GameOfLife(100, width / 10, height / 10) : null,
     [width, height],
   );
-
-  const getActiveSection = () => {
-    switch (activeSection) {
-      case 'aboutMe':
-        return <AboutMe />;
-      case 'contacts':
-        return <Contacts />;
-      case 'myProjects':
-        return <MyProjects />;
-      case 'aboutBackground':
-        return <AboutBackground />;
-    }
-  };
 
   return (
     <div className={styles.page}>
@@ -89,7 +70,9 @@ export const MainLayout: FC = () => {
         )}
         {textShowed && (
           <div className={styles.contentBox}>
-            <div className={styles.context}>{getActiveSection()}</div>
+            <div className={styles.context}>
+              <Sections activeSection={activeSection} />
+            </div>
             <div className={classNames(styles.menu, styles.context)}>
               <Menu
                 activeSection={activeSection}

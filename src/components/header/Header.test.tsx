@@ -6,6 +6,6 @@ import { Header } from './Header';
 describe('Header', () => {
   it('renders svg text children', () => {
     render(<Header>Hello</Header>);
-    expect(screen.getByText('Hello')).toBeInTheDocument();
+    expect(screen.getAllByText('Hello')).toHaveLength(2);
   });
 });
