@@ -1,7 +1,6 @@
 .socialMediaWheelWrapper {
   --rotation: 45deg;
   --quadrant-size: 100px;
-  --wheel-size: calc(var(--quadrant-size) * 2);
 
   --moxfield-color: #731fa1;
   --instagram-color: #fcaf45;
@@ -27,6 +26,8 @@
 
   transform-origin: center;
   rotate: var(--rotation);
+
+  will-change: transform;
 }
 
 .quadrant {
@@ -49,6 +50,7 @@
   z-index: 1;
 
   transition: all 0.1s ease-in-out;
+  will-change: transform, box-shadow;
 
   svg {
     width: 25px;

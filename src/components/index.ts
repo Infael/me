@@ -1,6 +1,9 @@
-export { ModeSwitcher } from './ModeSwitcher/ModeSwitcher';
-export { MainLayout } from './Layout/MainLayout';
-export { Checkbox } from './Checkbox/Checkbox';
-export { Header } from './Header/Header';
-export { Canvas } from './Canvas/Canvas';
-export { GameOfLifeController } from './GameOfLifeController/GameOfLifeController';
+export { ModeSwitcher } from './modeSwitcher/ModeSwitcher';
+export { MainLayout } from './layout/MainLayout';
+export { Checkbox } from './checkbox/Checkbox';
+export { Header } from './header/Header';
+export { Canvas } from './canvas/Canvas';
+export { GameOfLifeController } from './gameOfLifeController/GameOfLifeController';
+export { Sections } from './sections';
+export type { Section } from './sections/Sections';
+export { Menu } from './menu/Menu';

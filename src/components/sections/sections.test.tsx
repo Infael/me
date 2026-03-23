@@ -1,10 +1,10 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
-import { AboutBackground } from './AboutBackground';
-import { AboutMe } from './AboutMe';
-import { Contacts } from './Contacts/Contacts';
-import { MyProjects } from './MyProjects';
+import { AboutBackground } from './aboutBackground/AboutBackground';
+import { AboutMe } from './aboutMe/AboutMe';
+import { Contacts } from './contacts/Contacts';
+import { MyProjects } from './myProjects/MyProjects';
 
 describe('section components', () => {
   it('render expected section headings', () => {
@@ -17,9 +17,9 @@ describe('section components', () => {
       </>,
     );
 
-    expect(screen.getByText("Hello! I'm Michal")).toBeInTheDocument();
-    expect(screen.getByText('Contact me')).toBeInTheDocument();
-    expect(screen.getByText('What have I done?')).toBeInTheDocument();
-    expect(screen.getByText('Game of Life')).toBeInTheDocument();
+    expect(screen.getAllByText("Hello! I'm Michal")).toHaveLength(2);
+    expect(screen.getAllByText('Contact me')).toHaveLength(2);
+    expect(screen.getAllByText('What have I done?')).toHaveLength(2);
+    expect(screen.getAllByText('Game of Life')).toHaveLength(2);
   });
 });

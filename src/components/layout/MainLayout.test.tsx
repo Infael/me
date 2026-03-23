@@ -13,7 +13,7 @@ describe('MainLayout', () => {
   it('renders base controls and sections', () => {
     render(<MainLayout />);
 
-    expect(screen.getByText('About me')).toBeInTheDocument();
+    expect(screen.queryByText('About me')).toBeInTheDocument();
     expect(screen.getByText('HIDE TEXT')).toBeInTheDocument();
   });
 
@@ -27,16 +27,20 @@ describe('MainLayout', () => {
   });
 
   it.each([
-    "Hello! I'm Michal",
-    'My projects',
-    'About this background',
-    'Contacts',
-  ] as const)(`renders %s section based on activeSection state`, (label) => {
-    render(<MainLayout />);
+    ['About me', "Hello! I'm Michal"],
+    ['My projects', 'What have I done?'],
+    ['About this background', 'Game of Life'],
+    ['Contacts', 'Contact me'],
+  ] as const)(
+    `renders %s section based on activeSection state`,
+    (menuItem, label) => {
+      render(<MainLayout />);
 
-    const menuItem = screen.getByText(label);
-    fireEvent.click(menuItem);
+      const menuItemElement = screen.getByText(menuItem);
+      fireEvent.click(menuItemElement);
 
-    expect(screen.getByText(label)).toBeInTheDocument();
-  });
+      // check if at least one element with the section label is rendered
+      expect(screen.getAllByText(label)).toHaveLength(2);
+    },
+  );
 });
