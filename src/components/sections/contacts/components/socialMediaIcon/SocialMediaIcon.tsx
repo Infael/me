@@ -4,7 +4,7 @@ import styles from './SocialMediaIcon.module.css';
 
 interface SocialMediaIconProps {
   href: string;
-  label: string;
+  label: React.ReactNode;
   icon: React.ReactNode;
 }
 

@@ -1,4 +1,4 @@
-import { useMediaQuery, useMouse } from '@uidotdev/usehooks';
+import { useMouse } from '@uidotdev/usehooks';
 import { CSSProperties, FC, useEffect, useRef, useState } from 'react';
 
 import { Checkbox } from '@components/checkbox/Checkbox';
@@ -9,12 +9,8 @@ type Mode = 'light' | 'dark' | 'true-dark';
 
 const FLASHLIGHT_SIZE = 500;
 
-// TODO - should I make color mode persistent? Not now, but maybe later.
 export const ModeSwitcher: FC = () => {
-  const userPreferDark = useMediaQuery('(prefers-color-scheme: dark)');
-  const [mode, setMode] = useState<Mode>(() =>
-    userPreferDark ? 'dark' : 'light',
-  );
+  const [mode, setMode] = useState<Mode>('dark');
   const [mode3d, setMode3d] = useState(false);
 
   const mouseDivRef = useRef<HTMLDivElement>(null);

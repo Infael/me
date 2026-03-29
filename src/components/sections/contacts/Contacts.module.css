@@ -14,10 +14,21 @@
   gap: 0.5rem;
 
   a {
-    color: var(--white);
+    color: var(--color);
   }
 }
 
 .socialMediaRow {
   margin-top: 1rem;
+}
+
+.instagramLabelBox {
+  font-size: 11px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+
+  p {
+    margin: 0;
+  }
 }

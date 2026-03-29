@@ -39,22 +39,27 @@ export const Contacts: FC = () => {
           <div className={styles.contactsRow}>
             <SocialMediaIcon
               href="https://github.com/Infael"
-              label="Github"
+              label="My code"
               icon={<GitHubIcon />}
             />
             <SocialMediaIcon
               href="https://cz.linkedin.com/in/michal-%C5%A1tefa%C5%88%C3%A1k"
-              label="LinkedIn"
+              label="Work stuff"
               icon={<LinkedInIcon />}
             />
             <SocialMediaIcon
               href="https://www.instagram.com/michalmiskostefanak/"
-              label="Instagram"
+              label={
+                <div className={styles.instagramLabelBox}>
+                  <p>My life</p>
+                  <p>in a few snapshots</p>
+                </div>
+              }
               icon={<InstagramIcon />}
             />
             <SocialMediaIcon
               href="https://moxfield.com/users/Infael"
-              label="Moxfield"
+              label="Cards?"
               icon={<img src={moxfieldLogo} alt="Moxfield" />}
             />
           </div>
