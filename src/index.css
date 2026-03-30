@@ -14,11 +14,13 @@
   /* Colors */
   --black: #0c0c0c;
   --white: #f3f3f3;
+  --gray: #444444;
 
   --secondary-color: #51e18d; /* #fcba04 */
 
   --background-color: var(--black);
   --color: var(--white);
+  --disabled-color: var(--gray);
 
   color-scheme: light dark;
 
@@ -41,4 +43,25 @@ body {
 
 html.anaglyph-mode .anaglyph-target {
   filter: url('#anaglyph-3d');
+}
+
+button {
+  border: 1px solid var(--color);
+  background-color: var(--background-color);
+  color: var(--color);
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--color);
+    color: var(--background-color);
+  }
+
+  &:disabled {
+    background-color: var(--disabled-color);
+    color: var(--color);
+
+    &:hover {
+      cursor: not-allowed;
+    }
+  }
 }
