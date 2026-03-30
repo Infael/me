@@ -1,0 +1,40 @@
+.dialog {
+  position: relative;
+  overflow: visible;
+}
+
+.content {
+  max-height: min(60vh, 700px);
+  padding: 1rem;
+  overflow: auto;
+}
+
+.closeButton {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  border-radius: 100%;
+  border: 2px solid var(--color);
+  background-color: var(--background-color);
+  padding: 2px 5px;
+  font-weight: bold;
+  translate: 50% -50%;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--color);
+    color: var(--background-color);
+  }
+}
+
+.footer {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 0.5rem;
+  width: 100%;
+
+  @media screen and (min-width: 425px) {
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+}

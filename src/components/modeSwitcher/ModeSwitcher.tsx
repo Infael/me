@@ -1,7 +1,9 @@
 import { useMouse } from '@uidotdev/usehooks';
 import { CSSProperties, FC, useEffect, useRef, useState } from 'react';
 
+import { LightModeDialogs } from './LightModeDialogs';
 import { Checkbox } from '@components/checkbox/Checkbox';
+import { DialogControls } from '@components/dialog';
 
 import styles from './ModeSwitcher.module.css';
 
@@ -15,6 +17,9 @@ export const ModeSwitcher: FC = () => {
 
   const mouseDivRef = useRef<HTMLDivElement>(null);
   const [mouseData] = useMouse();
+
+  const dialogRef = useRef<DialogControls>(null);
+  const lightModeCheckboxRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     switch (mode) {
@@ -47,13 +52,19 @@ export const ModeSwitcher: FC = () => {
   return (
     <>
       <div className={styles.switcher}>
-        <Checkbox
-          checked={mode === 'light'}
-          label="light"
-          onChange={() => {
-            setMode('light');
-          }}
-        />
+        <div ref={lightModeCheckboxRef}>
+          <Checkbox
+            checked={mode === 'light'}
+            label="light"
+            onChange={() => {
+              dialogRef.current?.open({
+                anchorEl: lightModeCheckboxRef.current,
+                placement: 'right',
+                offset: { x: 16, y: -24 },
+              });
+            }}
+          />
+        </div>
         <Checkbox
           checked={mode === 'dark'}
           label="dark"
@@ -92,6 +103,10 @@ export const ModeSwitcher: FC = () => {
           }
         />
       )}
+      <LightModeDialogs
+        firstDialogRef={dialogRef}
+        onSuccess={() => setMode('light')}
+      />
     </>
   );
 };
