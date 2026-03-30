@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.4.0](https://github.com/Infael/me/compare/me-v1.3.0...me-v1.4.0) (2026-03-30)
+
+
+### Features
+
+* Add light mode dialogs for mode switcher ([#19](https://github.com/Infael/me/issues/19)) ([5219061](https://github.com/Infael/me/commit/5219061edb6fbda35b33676ab1ad12d1bf865b9a))
+* replaced social media wheel with individual icons ([#16](https://github.com/Infael/me/issues/16)) ([834f978](https://github.com/Infael/me/commit/834f9787ad11c14205f783a47d95c08117f847bb))
+* small fixes ([#18](https://github.com/Infael/me/issues/18)) ([02ed43b](https://github.com/Infael/me/commit/02ed43b45565f10ef6d1be471003ce281998c64a))
+
 ## [1.3.0](https://github.com/Infael/me/compare/me-v1.2.0...me-v1.3.0) (2026-03-23)
 
 
