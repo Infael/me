@@ -5,12 +5,7 @@ import { Dialog, DialogControls, DialogFooter } from '@components/dialog';
 
 import styles from './LightModeDialogs.module.css';
 
-const numberOfChickens = Math.floor(Math.random() * 6) + 4;
-const QUESTIONS_MARATON_LENGTH = 15;
-const missingQuestion = Math.max(
-  Math.floor(Math.random() * QUESTIONS_MARATON_LENGTH),
-  2,
-);
+const SEED = Math.random();
 
 interface LightModeDialogsProps {
   firstDialogRef: RefObject<DialogControls | null>;
@@ -38,11 +33,7 @@ export const LightModeDialogs: FC<LightModeDialogsProps> = ({
   );
 
   const dialogs = useMemo<DialogProps[]>(() => {
-    const base = getPrompts(
-      numberOfChickens,
-      QUESTIONS_MARATON_LENGTH,
-      missingQuestion,
-    );
+    const base = getPrompts(SEED);
 
     return base.map((dialog) => {
       const combined = [...dialog.correctAnswer, ...dialog.incorrectAnswer];
