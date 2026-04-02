@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://github.com/Infael/me/compare/me-v1.4.0...me-v1.5.0) (2026-04-02)
+
+
+### Features
+
+* more dialogs for light mode game ([#20](https://github.com/Infael/me/issues/20)) ([2127042](https://github.com/Infael/me/commit/2127042248018e847dedc542b2842856e284582d))
+
 ## [1.4.0](https://github.com/Infael/me/compare/me-v1.3.0...me-v1.4.0) (2026-03-30)
 
 
