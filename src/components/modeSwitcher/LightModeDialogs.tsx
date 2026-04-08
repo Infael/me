@@ -107,7 +107,6 @@ export const LightModeDialogs: FC<LightModeDialogsProps> = ({
                     otherDialogRefs.current[index] = controls;
                   }
             }
-            className={styles.lightModeDialog}
           >
             {dialog.prompt}
             <DialogFooter className={styles.lightModeDialogFooter}>
