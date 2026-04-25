@@ -4,10 +4,16 @@ import { AboutBackground } from './aboutBackground/AboutBackground';
 import { AboutMe } from './aboutMe/AboutMe';
 import { Contacts } from './contacts/Contacts';
 import { MyProjects } from './myProjects/MyProjects';
+import { MySkills } from './mySkills/MySkills';
 
 import styles from './Sections.module.css';
 
-export type Section = 'aboutMe' | 'myProjects' | 'aboutBackground' | 'contacts';
+export type Section =
+  | 'aboutMe'
+  | 'myProjects'
+  | 'aboutBackground'
+  | 'contacts'
+  | 'mySkills';
 interface SectionProps {
   activeSection: Section;
 }
@@ -22,6 +28,7 @@ export const Sections: FC<SectionProps> = ({ activeSection }) => {
     { name: 'contacts', component: <Contacts /> },
     { name: 'myProjects', component: <MyProjects /> },
     { name: 'aboutBackground', component: <AboutBackground /> },
+    { name: 'mySkills', component: <MySkills /> },
   ];
 
   return (
