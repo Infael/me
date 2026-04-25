@@ -43,6 +43,15 @@ export const Menu: FC<MenuProps> = ({ activeSection, setActiveSection }) => {
       <div
         className={classNames(
           styles.menuItem,
+          activeSection === 'mySkills' ? styles.active : '',
+        )}
+        onClick={() => setActiveSection('mySkills')}
+      >
+        Skills
+      </div>
+      <div
+        className={classNames(
+          styles.menuItem,
           activeSection === 'aboutBackground' ? styles.active : '',
         )}
         onClick={() => setActiveSection('aboutBackground')}

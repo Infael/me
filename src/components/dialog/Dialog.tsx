@@ -1,9 +1,13 @@
 import {
+  CSSProperties,
+  Children,
   FC,
   type ReactNode,
   type Ref,
   type RefObject,
+  cloneElement,
   createContext,
+  isValidElement,
   useCallback,
   useContext,
   useImperativeHandle,
@@ -39,6 +43,21 @@ interface DialogProps {
   className?: string;
 }
 
+interface DialogContentInternalProps {
+  __setDialogElement?: (element: HTMLDialogElement | null) => void;
+  __alert?: boolean;
+  __closeDisabled?: boolean;
+  __closeHidden?: boolean;
+  __dialogClassName?: string;
+  __style?: CSSProperties;
+  __onClose?: () => void;
+}
+
+interface DialogContentProps extends DialogContentInternalProps {
+  children?: ReactNode;
+  className?: string;
+}
+
 export const Dialog: FC<DialogProps> = ({
   children,
   alert = false,
@@ -56,6 +75,10 @@ export const Dialog: FC<DialogProps> = ({
   const [position, setPosition] = useState<Vector | null>(null);
   const [currentPlacement, setCurrentPlacement] =
     useState<Placement>(defaultPlacement);
+
+  const setDialogElement = useCallback((element: HTMLDialogElement | null) => {
+    dialogRef.current = element;
+  }, []);
 
   const open = useCallback(
     (options?: OpenOptions) => {
@@ -118,48 +141,111 @@ export const Dialog: FC<DialogProps> = ({
 
   useImperativeHandle(controlsRef, () => controls, [controls]);
 
-  const style =
-    position === null
-      ? undefined
-      : {
-          position: 'fixed' as const,
-          left: `${clamp(position.x, 16, window.innerWidth - 16)}px`,
-          top: `${clamp(position.y, 16, window.innerHeight - 16)}px`,
-          transform: transformByPlacement[currentPlacement],
-          margin: 0,
-        };
+  const style = useMemo<CSSProperties | undefined>(
+    () =>
+      position === null
+        ? undefined
+        : {
+            position: 'fixed',
+            left: `${clamp(position.x, 16, window.innerWidth - 16)}px`,
+            top: `${clamp(position.y, 16, window.innerHeight - 16)}px`,
+            transform: transformByPlacement[currentPlacement],
+            margin: 0,
+          },
+    [currentPlacement, position],
+  );
+
+  const renderedChildren = useMemo(
+    () =>
+      Children.map(children, (child) => {
+        if (!isValidElement<DialogContentProps>(child)) {
+          return child;
+        }
+
+        if (child.type !== DialogContent) {
+          return child;
+        }
+
+        return cloneElement(child, {
+          __setDialogElement: setDialogElement,
+          __alert: alert,
+          __closeDisabled: closeDisabled,
+          __closeHidden: closeHidden,
+          __dialogClassName: className,
+          __style: style,
+          __onClose: close,
+        });
+      }),
+    [
+      alert,
+      children,
+      className,
+      close,
+      closeDisabled,
+      closeHidden,
+      setDialogElement,
+      style,
+    ],
+  );
 
   return (
-    <DialogContext value={controls}>
-      <dialog
-        ref={dialogRef}
-        popover={alert ? 'manual' : 'auto'}
-        className={classNames(styles.dialog, className)}
-        style={style}
-      >
-        {!closeHidden && (
-          <button
-            disabled={closeDisabled}
-            className={styles.closeButton}
-            onClick={close}
-            aria-label="Close"
-          >
-            ×
-          </button>
-        )}
-        <div className={styles.content}>{children}</div>
-      </dialog>
-    </DialogContext>
+    <DialogContext.Provider value={controls}>
+      {renderedChildren}
+    </DialogContext.Provider>
+  );
+};
+
+export const DialogContent: FC<DialogContentProps> = ({
+  children,
+  className,
+  __setDialogElement,
+  __alert,
+  __closeDisabled,
+  __closeHidden,
+  __dialogClassName,
+  __style,
+  __onClose,
+}) => {
+  return (
+    <dialog
+      ref={__setDialogElement}
+      popover={__alert ? 'manual' : 'auto'}
+      className={classNames(styles.dialog, __dialogClassName, className)}
+      style={__style}
+    >
+      {!__closeHidden && (
+        <button
+          disabled={__closeDisabled}
+          className={styles.closeButton}
+          onClick={__onClose}
+          aria-label="Close"
+        >
+          ×
+        </button>
+      )}
+      <div className={styles.content}>{children}</div>
+    </dialog>
   );
 };
 
 interface DialogTriggerProps {
   children?: ReactNode;
+  className?: string;
 }
 
-export const DialogTrigger: FC<DialogTriggerProps> = ({ children }) => {
+export const DialogTrigger: FC<DialogTriggerProps> = ({
+  children,
+  className,
+}) => {
   const controls = useContext(DialogContext);
-  return <div onClick={() => controls?.open()}>{children}</div>;
+  return (
+    <div
+      onClick={() => controls?.open()}
+      className={classNames(styles.trigger, className)}
+    >
+      {children}
+    </div>
+  );
 };
 
 interface DialogFooterProps {

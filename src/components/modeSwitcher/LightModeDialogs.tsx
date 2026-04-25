@@ -1,7 +1,12 @@
 import { FC, RefObject, useMemo, useRef, useState } from 'react';
 
 import { DialogProps, getPrompts } from './LightModeDialogsGameConfig';
-import { Dialog, DialogControls, DialogFooter } from '@components/dialog';
+import {
+  Dialog,
+  DialogContent,
+  DialogControls,
+  DialogFooter,
+} from '@components/dialog';
 
 import styles from './LightModeDialogs.module.css';
 
@@ -10,6 +15,11 @@ const SEED = Math.random();
 interface LightModeDialogsProps {
   firstDialogRef: RefObject<DialogControls | null>;
   onSuccess: () => void;
+}
+
+interface DialogItem extends DialogProps {
+  key: string;
+  answerItems: Array<{ key: string; value: React.ReactNode }>;
 }
 
 const shuffle = <T,>(arr: T[]): T[] => {
@@ -32,16 +42,23 @@ export const LightModeDialogs: FC<LightModeDialogsProps> = ({
     <p>Got you!</p>,
   );
 
-  const dialogs = useMemo<DialogProps[]>(() => {
+  const dialogs = useMemo<DialogItem[]>(() => {
     const base = getPrompts(SEED);
 
-    return base.map((dialog) => {
+    return base.map((dialog, dialogIndex) => {
       const combined = [...dialog.correctAnswer, ...dialog.incorrectAnswer];
+      const answers = dialog.shuffleAnswers
+        ? shuffle(combined)
+        : dialog.incorrectAnswer.concat(dialog.correctAnswer);
+
       return {
         ...dialog,
-        answers: dialog.shuffleAnswers
-          ? shuffle(combined)
-          : dialog.incorrectAnswer.concat(dialog.correctAnswer),
+        answers,
+        key: `dialog-${dialogIndex}-${crypto.randomUUID()}`,
+        answerItems: answers.map((value, answerIndex) => ({
+          key: `answer-${dialogIndex}-${answerIndex}-${crypto.randomUUID()}`,
+          value,
+        })),
       };
     });
   }, []);
@@ -94,7 +111,7 @@ export const LightModeDialogs: FC<LightModeDialogsProps> = ({
 
         return (
           <Dialog
-            key={index}
+            key={dialog.key}
             alert
             closeDisabled={!isActive}
             onClose={() => {
@@ -108,43 +125,47 @@ export const LightModeDialogs: FC<LightModeDialogsProps> = ({
                   }
             }
           >
-            {dialog.prompt}
-            <DialogFooter className={styles.lightModeDialogFooter}>
-              {dialog.answers.map((answer, i) => (
-                <button
-                  key={i}
-                  disabled={!isActive}
-                  onClick={async () => {
-                    const isCorrect = dialog.correctAnswer.includes(answer);
+            <DialogContent>
+              {dialog.prompt}
+              <DialogFooter className={styles.lightModeDialogFooter}>
+                {dialog.answerItems.map((answerItem) => (
+                  <button
+                    key={answerItem.key}
+                    disabled={!isActive}
+                    onClick={async () => {
+                      const isCorrect = dialog.correctAnswer.includes(
+                        answerItem.value,
+                      );
 
-                    if (isCorrect && !isLast) {
-                      setActiveDialog(index + 1);
-                      getDialogRef(index + 1)?.open();
-                      return;
-                    }
+                      if (isCorrect && !isLast) {
+                        setActiveDialog(index + 1);
+                        getDialogRef(index + 1)?.open();
+                        return;
+                      }
 
-                    if (!isCorrect && dialog.gotYouEnabled) {
-                      setActiveDialog('gotYou');
-                      setGotYouPrompt(dialog.gotYouPrompt || <p>Got you!</p>);
-                      gotYouDialogRef.current?.open({
-                        anchorEl: getDialogRef(index)?.element,
-                        placement: 'top',
-                        offset: { x: 0, y: -16 },
-                      });
-                      return;
-                    }
+                      if (!isCorrect && dialog.gotYouEnabled) {
+                        setActiveDialog('gotYou');
+                        setGotYouPrompt(dialog.gotYouPrompt || <p>Got you!</p>);
+                        gotYouDialogRef.current?.open({
+                          anchorEl: getDialogRef(index)?.element,
+                          placement: 'top',
+                          offset: { x: 0, y: -16 },
+                        });
+                        return;
+                      }
 
-                    await closeAllDialogs();
+                      await closeAllDialogs();
 
-                    if (isCorrect) {
-                      onSuccess();
-                    }
-                  }}
-                >
-                  {answer}
-                </button>
-              ))}
-            </DialogFooter>
+                      if (isCorrect) {
+                        onSuccess();
+                      }
+                    }}
+                  >
+                    {answerItem.value}
+                  </button>
+                ))}
+              </DialogFooter>
+            </DialogContent>
           </Dialog>
         );
       })}
@@ -156,18 +177,20 @@ export const LightModeDialogs: FC<LightModeDialogsProps> = ({
         }}
         closeHidden
       >
-        {gotYouPrompt}
-        <DialogFooter>
-          <button
-            disabled={activeDialog !== 'gotYou'}
-            onClick={async () => {
-              gotYouDialogRef.current?.close();
-              await closeAllDialogs();
-            }}
-          >
-            Damn...
-          </button>
-        </DialogFooter>
+        <DialogContent>
+          {gotYouPrompt}
+          <DialogFooter>
+            <button
+              disabled={activeDialog !== 'gotYou'}
+              onClick={async () => {
+                gotYouDialogRef.current?.close();
+                await closeAllDialogs();
+              }}
+            >
+              Damn...
+            </button>
+          </DialogFooter>
+        </DialogContent>
       </Dialog>
     </>
   );
