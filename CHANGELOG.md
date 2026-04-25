@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.6.0](https://github.com/Infael/me/compare/me-v1.5.0...me-v1.6.0) (2026-04-25)
+
+
+### Features
+
+* My skills section ([#24](https://github.com/Infael/me/issues/24)) ([665bbd1](https://github.com/Infael/me/commit/665bbd132947bab419445c9cbe722275c3e60f22))
+
+
+### Bug Fixes
+
+* remove max-width from light mode dialogs ([#22](https://github.com/Infael/me/issues/22)) ([545ee6f](https://github.com/Infael/me/commit/545ee6fdc12401839f28ad4940c9d991692bc39a))
+
 ## [1.5.0](https://github.com/Infael/me/compare/me-v1.4.0...me-v1.5.0) (2026-04-02)
 
 
