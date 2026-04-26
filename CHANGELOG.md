@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.7.0](https://github.com/Infael/me/compare/me-v1.6.0...me-v1.7.0) (2026-04-26)
+
+
+### Features
+
+* add logo ([#25](https://github.com/Infael/me/issues/25)) ([045142d](https://github.com/Infael/me/commit/045142d99453be40f4572c7dcfc93e222f96d3f3))
+
+
+### Bug Fixes
+
+* skills overflow ([#27](https://github.com/Infael/me/issues/27)) ([07a4930](https://github.com/Infael/me/commit/07a4930ab82a8927cd6974774f2acf9e2dddce78))
+
 ## [1.6.0](https://github.com/Infael/me/compare/me-v1.5.0...me-v1.6.0) (2026-04-25)
 
 
