@@ -10,6 +10,7 @@ import {
   isValidElement,
   useCallback,
   useContext,
+  useEffect,
   useImperativeHandle,
   useMemo,
   useRef,
@@ -50,7 +51,6 @@ interface DialogContentInternalProps {
   __closeHidden?: boolean;
   __dialogClassName?: string;
   __style?: CSSProperties;
-  __onClose?: () => void;
 }
 
 interface DialogContentProps extends DialogContentInternalProps {
@@ -71,18 +71,16 @@ export const Dialog: FC<DialogProps> = ({
   anchorRef,
   className,
 }) => {
-  const dialogRef = useRef<HTMLDialogElement | null>(null);
+  const [dialogElement, setDialogElement] = useState<HTMLDialogElement | null>(
+    null,
+  );
   const [position, setPosition] = useState<Vector | null>(null);
   const [currentPlacement, setCurrentPlacement] =
     useState<Placement>(defaultPlacement);
 
-  const setDialogElement = useCallback((element: HTMLDialogElement | null) => {
-    dialogRef.current = element;
-  }, []);
-
   const open = useCallback(
     (options?: OpenOptions) => {
-      const el = dialogRef.current;
+      const el = dialogElement;
       if (!el) return;
 
       const placement = options?.placement ?? defaultPlacement;
@@ -112,11 +110,11 @@ export const Dialog: FC<DialogProps> = ({
 
       if (!el.open) el.showModal();
     },
-    [anchorRef, defaultPlacement, offset, onOpen],
+    [anchorRef, defaultPlacement, dialogElement, offset, onOpen],
   );
 
   const close = useCallback(() => {
-    const el = dialogRef.current;
+    const el = dialogElement;
     if (!el) return;
 
     onClose?.();
@@ -126,17 +124,17 @@ export const Dialog: FC<DialogProps> = ({
       return;
     }
     if (el.open) el.close();
-  }, [onClose]);
+  }, [dialogElement, onClose]);
 
   const controls = useMemo<DialogControls>(
     () => ({
       open,
       close,
       get element() {
-        return dialogRef.current;
+        return dialogElement;
       },
     }),
-    [open, close],
+    [close, dialogElement, open],
   );
 
   useImperativeHandle(controlsRef, () => controls, [controls]);
@@ -155,38 +153,42 @@ export const Dialog: FC<DialogProps> = ({
     [currentPlacement, position],
   );
 
-  const renderedChildren = useMemo(
-    () =>
-      Children.map(children, (child) => {
-        if (!isValidElement<DialogContentProps>(child)) {
-          return child;
-        }
+  const renderedChildren = useMemo(() => {
+    const result: ReactNode[] = [];
 
-        if (child.type !== DialogContent) {
-          return child;
-        }
+    for (const child of Children.toArray(children)) {
+      if (!isValidElement<DialogContentProps>(child)) {
+        result.push(child);
+        continue;
+      }
 
-        return cloneElement(child, {
+      if (child.type !== DialogContent) {
+        result.push(child);
+        continue;
+      }
+
+      result.push(
+        cloneElement(child, {
           __setDialogElement: setDialogElement,
           __alert: alert,
           __closeDisabled: closeDisabled,
           __closeHidden: closeHidden,
           __dialogClassName: className,
           __style: style,
-          __onClose: close,
-        });
-      }),
-    [
-      alert,
-      children,
-      className,
-      close,
-      closeDisabled,
-      closeHidden,
-      setDialogElement,
-      style,
-    ],
-  );
+        }),
+      );
+    }
+
+    return result;
+  }, [
+    alert,
+    children,
+    className,
+    closeDisabled,
+    closeHidden,
+    setDialogElement,
+    style,
+  ]);
 
   return (
     <DialogContext.Provider value={controls}>
@@ -204,11 +206,21 @@ export const DialogContent: FC<DialogContentProps> = ({
   __closeHidden,
   __dialogClassName,
   __style,
-  __onClose,
 }) => {
+  const dialogRef = useRef<HTMLDialogElement | null>(null);
+  const controls = useContext(DialogContext);
+
+  useEffect(() => {
+    __setDialogElement?.(dialogRef.current);
+
+    return () => {
+      __setDialogElement?.(null);
+    };
+  }, [__setDialogElement]);
+
   return (
     <dialog
-      ref={__setDialogElement}
+      ref={dialogRef}
       popover={__alert ? 'manual' : 'auto'}
       className={classNames(styles.dialog, __dialogClassName, className)}
       style={__style}
@@ -217,7 +229,7 @@ export const DialogContent: FC<DialogContentProps> = ({
         <button
           disabled={__closeDisabled}
           className={styles.closeButton}
-          onClick={__onClose}
+          onClick={() => controls?.close()}
           aria-label="Close"
         >
           ×
