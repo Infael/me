@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.0](https://github.com/Infael/me/compare/me-v1.7.0...me-v1.8.0) (2026-05-24)
+
+
+### Features
+
+* Mobile menu ([#29](https://github.com/Infael/me/issues/29)) ([bb74d08](https://github.com/Infael/me/commit/bb74d08f875e50869c7123b58978f89b66766224))
+
 ## [1.7.0](https://github.com/Infael/me/compare/me-v1.6.0...me-v1.7.0) (2026-04-26)
 
 
