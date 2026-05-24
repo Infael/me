@@ -1,5 +1,5 @@
 import { useMeasure } from '@uidotdev/usehooks';
-import { FC, MouseEvent, useMemo, useState } from 'react';
+import { Activity, FC, MouseEvent, useMemo, useState } from 'react';
 
 import {
   Canvas,
@@ -68,7 +68,7 @@ export const MainLayout: FC = () => {
             />
           </div>
         )}
-        {textShowed && (
+        <Activity mode={textShowed ? 'visible' : 'hidden'}>
           <div className={styles.contentBox}>
             <div className={styles.context}>
               <Sections activeSection={activeSection} />
@@ -80,7 +80,7 @@ export const MainLayout: FC = () => {
               />
             </div>
           </div>
-        )}
+        </Activity>
       </div>
     </div>
   );

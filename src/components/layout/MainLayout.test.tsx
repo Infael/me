@@ -23,13 +23,13 @@ describe('MainLayout', () => {
     const hideText = screen.getByLabelText('HIDE TEXT');
     fireEvent.click(hideText);
 
-    expect(screen.queryByText('About me')).not.toBeInTheDocument();
+    expect(screen.queryByText('About me')).not.toBeVisible();
   });
 
   it.each([
     ['About me', "Hello! I'm Michal"],
     ['My projects', 'What have I done?'],
-    ['About this background', 'Game of Life'],
+    ['This background', 'Game of Life'],
     ['Contacts', 'Contact me'],
   ] as const)(
     `renders %s section based on activeSection state`,

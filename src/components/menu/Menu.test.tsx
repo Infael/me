@@ -8,8 +8,8 @@ describe('Menu', () => {
     ['My projects', 'myProjects'],
     ['About me', 'aboutMe'],
     ['Contacts', 'contacts'],
-    ['About this background', 'aboutBackground'],
-  ])('calls setActiveSection on menu item click', (label, section) => {
+    ['This background', 'aboutBackground'],
+  ])('calls setActiveSection on menu item "%s" click', (label, section) => {
     const setActiveSection = vi.fn();
     render(
       <Menu activeSection="aboutMe" setActiveSection={setActiveSection} />,
