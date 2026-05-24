@@ -9,7 +9,7 @@
 
 .skills {
   margin-right: 20px;
-  max-height: 40dvh;
+  max-height: 50dvh;
   overflow-x: hidden;
   overflow-y: auto;
 }

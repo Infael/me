@@ -1,0 +1,48 @@
+.button {
+  --rotate-multiplier: 5;
+  --bar-width: 3px;
+  --bar-margin: 6px;
+
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: calc(calc(var(--bar-width) + var(--bar-margin)) * 3);
+  padding: 0;
+
+  &:focus {
+    outline: none;
+    background-color: transparent;
+  }
+}
+
+.bar {
+  content: '';
+  display: block;
+  width: 100%;
+  height: var(--bar-width);
+  background-color: var(--color);
+  margin-bottom: var(--bar-margin);
+  transition: all 0.3s ease-in-out;
+}
+
+.bar1 {
+  &.opened {
+    transform: translate(0px, calc(var(--bar-margin) + var(--bar-width)))
+      rotate(calc(45deg * var(--rotate-multiplier)));
+  }
+}
+
+.bar2 {
+  &.opened {
+    transform: rotate(calc(-45deg * var(--rotate-multiplier)));
+  }
+}
+
+.bar3 {
+  margin-bottom: 0;
+
+  &.opened {
+    transform: translate(0px, calc(-1 * (var(--bar-margin) + var(--bar-width))))
+      rotate(calc(45deg * var(--rotate-multiplier)));
+  }
+}
